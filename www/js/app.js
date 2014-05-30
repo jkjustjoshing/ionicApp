@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
+angular.module('ionicApp', ['ionic'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -29,56 +29,34 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-    // setup an abstract state for the tabs directive
-    .state('tab', {
-      url: "/tab",
+    // Registration
+    .state('signin', {
+      url: '/e',
+      templateUrl: 'templates/signin.html',
+      controller: 'SigninCtrl'
+    })
+
+    // Main App with sidebar
+    .state('mainApp', {
+      url: "/mainApp",
       abstract: true,
-      templateUrl: "templates/tabs.html"
+      templateUrl: "templates/mainApp.html"
     })
-
-    // Each tab has its own nav history stack:
-
-    .state('tab.dash', {
-      url: '/dash',
-      views: {
-        'tab-dash': {
-          templateUrl: 'templates/tab-dash.html',
-          controller: 'DashCtrl'
-        }
-      }
-    })
-
-    .state('tab.friends', {
-      url: '/friends',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
-        }
-      }
-    })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
-      views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
-        }
-      }
-    })
-
-    .state('tab.account', {
-      url: '/account',
-      views: {
-        'tab-account': {
-          templateUrl: 'templates/tab-account.html',
-          controller: 'AccountCtrl'
-        }
-      }
-    })
+      .state('mainApp.lorem', {
+        url: '/lorem',
+        templateUrl: 'templates/lorem.html'
+      })
+      .state('mainApp.other', {
+        url: '/other',
+        templateUrl: 'templates/other.html'
+      });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/mainApp/lorem');
 
+}).run(function($rootScope, $ionicSideMenuDelegate) {
+  $rootScope.$on('$stateChangeSuccess', function() {
+    $ionicSideMenuDelegate.toggleLeft(false);
+  });
 });
 
