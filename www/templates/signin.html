@@ -5,7 +5,7 @@
 	</div>
 	<div class="content has-header padding">
 		<p>
-			Welcome to the app. Please type in your invite number.
+			Welcome to the app. Please type in your invite number or scan the barcode.
 		</p>
 		<div class="list">
 			<label class="item item-input">
@@ -15,6 +15,10 @@
 		  <button class="button button-block button-positive" ng-disabled="!inviteNumber.length" ng-click="authenticate()">
 			  Enter
 			</button>
+			<button class="button button-block button-balanced" ng-click="scanBarcode()">
+			  Scan Barcode
+			</button>
+			{{text}}
 		</div>
 	</div>
 </ion-pane>

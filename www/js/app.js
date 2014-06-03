@@ -31,7 +31,7 @@ angular.module('ionicApp', ['ionic', 'firebase'])
 
     // Registration
     .state('signin', {
-      url: '/e',
+      url: '/',
       templateUrl: 'templates/signin.html',
       controller: 'SigninCtrl'
     })
@@ -53,7 +53,7 @@ angular.module('ionicApp', ['ionic', 'firebase'])
       });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/mainApp/lorem');
+  $urlRouterProvider.otherwise('/');
 
 }).run(function($rootScope, $ionicSideMenuDelegate) {
   $rootScope.$on('$stateChangeSuccess', function() {

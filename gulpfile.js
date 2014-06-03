@@ -6,12 +6,13 @@ var sass = require('gulp-sass');
 var minifyCss = require('gulp-minify-css');
 var rename = require('gulp-rename');
 var sh = require('shelljs');
+var preprocess = require('gulp-preprocess');
 
 var paths = {
   sass: ['./scss/**/*.scss']
 };
 
-gulp.task('default', ['sass']);
+gulp.task('default', ['sass', 'html']);
 
 gulp.task('sass', function(done) {
   gulp.src('./scss/ionic.app.scss')
@@ -34,6 +35,12 @@ gulp.task('install', ['git-check'], function() {
     .on('log', function(data) {
       gutil.log('bower', gutil.colors.cyan(data.id), data.message);
     });
+});
+
+gulp.task('html', function() {
+  gulp.src('./app/*.html')
+    .pipe(preprocess({context: { NODE_ENV: 'build', DEBUG: true}})) //To set environment variables in-line
+    .pipe(gulp.dest('./dist/'))
 });
 
 gulp.task('git-check', function(done) {
