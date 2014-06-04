@@ -43,9 +43,10 @@ angular.module('ionicApp', ['ionic', 'firebase'])
       templateUrl: "templates/mainApp.html",
       controller: 'MainAppCtrl'
     })
-      .state('mainApp.lorem', {
-        url: '/lorem',
-        templateUrl: 'templates/lorem.html'
+      .state('mainApp.imageFeed', {
+        url: '/imageFeed',
+        templateUrl: 'templates/imageFeed.html',
+        controller: 'ImageFeedCtrl'
       })
       .state('mainApp.other', {
         url: '/other',

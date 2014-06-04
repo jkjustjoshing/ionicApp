@@ -1,0 +1,8 @@
+<ion-content class="content has-header padding">
+	<ion-list on-infinite-scroll="loadMore">
+		<ion-item ng-repeat="image in images | limitTo:numberToDisplay" item="image">
+			<img ng-src="http://i.imgur.com/{{image.id}}m.jpg" alt="Uploaded image" />
+		</ion-item>
+	</ion-list>
+	<ion-infinite-scroll ng-if="!endOfList()" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
+</ion-content>

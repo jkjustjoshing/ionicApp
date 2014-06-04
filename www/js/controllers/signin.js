@@ -9,7 +9,7 @@ angular.module('ionicApp')
 
 			User.logIn(value).then(function(success) {
 				if(success) {
-					$state.go('mainApp.lorem');
+					$state.go('mainApp.imageFeed');
 				}
 			});
 				
