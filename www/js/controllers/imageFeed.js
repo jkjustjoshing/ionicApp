@@ -1,5 +1,5 @@
 angular.module('ionicApp')
-	.controller('ImageFeedCtrl', function($scope, Imgur) {
+	.controller('ImageFeedCtrl', function($scope, Imgur, Camera) {
 
 		var PAGE_SIZE = 2;
 		
@@ -17,6 +17,14 @@ angular.module('ionicApp')
 
 		$scope.endOfList = function() {
 			return $scope.numberToDisplay >= $scope.images.length;
+		};
+
+		$scope.uploadImage = function() {
+			Camera.cameraOrAlbum().then(function(imageUrl) {
+				alert(imageUrl);
+				console.log(imageUrl)
+				$scope.uploadedImage = imageUrl;
+			});
 		};
 
 	});

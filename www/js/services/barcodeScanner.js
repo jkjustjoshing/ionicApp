@@ -1,5 +1,5 @@
 angular.module('ionicApp')  
-  .factory('BarcodeScanner', function($q, $rootScope, $document) {
+  .factory('BarcodeScanner', function($q, $rootScope) {
 
     var token, info;
 

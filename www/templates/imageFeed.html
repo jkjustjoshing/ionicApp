@@ -1,5 +1,13 @@
 <ion-content class="content has-header padding">
 	<ion-list on-infinite-scroll="loadMore">
+		<ion-item>
+			<button class="button button-block button-balanced" ng-click="uploadImage()">
+				Upload image
+			</button>
+		</ion-item>
+		<ion-item>
+			<img ng-src="{{uploadedImage}}" />
+		</ion-item>
 		<ion-item ng-repeat="image in images | limitTo:numberToDisplay" item="image">
 			<img ng-src="http://i.imgur.com/{{image.id}}m.jpg" alt="Uploaded image" />
 		</ion-item>

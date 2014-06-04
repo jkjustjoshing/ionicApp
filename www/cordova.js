@@ -1,5 +1,5 @@
 // Mock cordova object for when running on desktop
-window.cordova = {
+window.cordova = window.cordova || {
 	plugins: {
 		barcodeScanner: {
 			scan: function(callback, errback) {
@@ -14,3 +14,20 @@ window.cordova = {
 		}
 	}
 };
+
+window.navigator = window.navigator || {
+	camera: {
+		getPicture: function(callback, error) {
+			setTimeout(function() {
+				callback('something!!');
+			});
+		}
+	}
+};
+
+window.Camera = window.Camera || {
+	PictureSourceType: {
+		CAMERA: 'camera',
+		SAVEDPHOTOALBUM: 'saved'
+	}
+}
