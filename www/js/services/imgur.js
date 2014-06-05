@@ -26,6 +26,19 @@ var album = '481i7';
     				});
       		});
 
+      },
+      upload: function(imageOrSomething, album) {
+      	return $http({
+      		method: 'POST',
+      		url: 'https://api.imgur.com/3/image',
+      		headers: {
+      			Authorization: 'Client-ID ' + clientId
+      		},
+      		data: {
+      			album: '481i7',
+      			image: imageOrSomething
+      		}
+      	})
       }
     };
   });

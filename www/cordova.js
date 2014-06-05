@@ -15,13 +15,11 @@ window.cordova = window.cordova || {
 	}
 };
 
-window.navigator = window.navigator || {
-	camera: {
-		getPicture: function(callback, error) {
-			setTimeout(function() {
-				callback('something!!');
-			});
-		}
+window.navigator.camera = window.navigator.camera || {
+	getPicture: function(callback, error) {
+		setTimeout(function() {
+			callback('something!!');
+		});
 	}
 };
 
@@ -29,5 +27,11 @@ window.Camera = window.Camera || {
 	PictureSourceType: {
 		CAMERA: 'camera',
 		SAVEDPHOTOALBUM: 'saved'
+	},
+	DestinationType: {
+		FILE_URI: 'uri'
+	},
+	EncodingType: {
+		JPEG: 'jpeg'
 	}
 }

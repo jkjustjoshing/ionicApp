@@ -24,6 +24,7 @@ angular.module('ionicApp')
 				alert(imageUrl);
 				console.log(imageUrl)
 				$scope.uploadedImage = imageUrl;
+				Imgur.upload(imageUrl);
 			});
 		};
 
