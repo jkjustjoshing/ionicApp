@@ -1,5 +1,5 @@
 angular.module('ionicApp')
-	.controller('ImageFeedCtrl', function($scope, Imgur, Camera) {
+	.controller('ImageFeedCtrl', function($scope, Imgur, Camera, ImageShack) {
 
 		var PAGE_SIZE = 2;
 		
@@ -27,5 +27,7 @@ angular.module('ionicApp')
 				Imgur.upload(imageUrl);
 			});
 		};
+
+		window.ImageShack = ImageShack
 
 	});
