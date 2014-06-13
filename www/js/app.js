@@ -48,6 +48,16 @@ angular.module('ionicApp', ['ionic', 'firebase'])
         templateUrl: 'templates/imageFeed.html',
         controller: 'ImageFeedCtrl'
       })
+      .state('mainApp.rsvp', {
+        url: '/rsvp',
+        templateUrl: 'templates/rsvp.html',
+        controller: 'RsvpCtrl'
+      })
+      .state('mainApp.countdown', {
+        url: '/countdown',
+        templateUrl: 'templates/countdown.html',
+        controller: 'CountdownCtrl'
+      })
       .state('mainApp.other', {
         url: '/other',
         templateUrl: 'templates/other.html'
