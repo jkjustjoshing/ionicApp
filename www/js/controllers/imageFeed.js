@@ -1,12 +1,12 @@
 angular.module('ionicApp')
-	.controller('ImageFeedCtrl', function($scope, Imgur, Camera, ImageShack) {
+	.controller('ImageFeedCtrl', function($scope, Imgur, Camera, ImageShack, S3) {
 
 		var PAGE_SIZE = 2;
 		
 		$scope.images = [];
 		$scope.numberToDisplay = PAGE_SIZE;
 
-		Imgur.getAlbum('481i7').then(function(data) {
+		/*Imgur.getAlbum('481i7').then(function(data) {
 			$scope.images = data.images;
 		});
 
@@ -27,7 +27,11 @@ angular.module('ionicApp')
 				Imgur.upload(imageUrl);
 			});
 		};
-
-		window.ImageShack = ImageShack
+*/
+		S3.listObjects().then(S3.getUrl).then(function(urls) {
+			$scope.urls = urls
+		}, function(err) {
+			console.log(err)
+		});
 
 	});
