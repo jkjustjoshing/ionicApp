@@ -30,6 +30,25 @@ angular.module('ionicApp')
 
         return deferred.promise;
         
+      },
+      getCountdown: function() {
+
+        var deferred = $q.defer();
+
+    		var ref = new Firebase(firebaseKey + 'config/countdownDate');
+
+        ref.on('value', function(value) {
+            if(value.val()) {
+              deferred.resolve(value.val());
+            } else {
+              deferred.reject();
+            }
+        }, function(error) {
+            deferred.reject();
+        });
+
+        return deferred.promise;
+        
       }
     }
   });
