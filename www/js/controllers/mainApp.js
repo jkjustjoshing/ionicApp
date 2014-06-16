@@ -1,6 +1,9 @@
 angular.module('ionicApp')
 	.controller('MainAppCtrl', function($scope, User) {
 		
-		$scope.userInfo = User.getInfo();
+		User.getInfo().then(function(info) {
+			console.log(info)
+			$scope.userInfo = info;
+		});
 
 	});

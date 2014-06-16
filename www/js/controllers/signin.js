@@ -1,18 +1,14 @@
 angular.module('ionicApp')
 	.controller('SigninCtrl', function($scope, $state, User, BarcodeScanner) {
 		
-
+	$scope.inviteNumber = '{"u":"foo","p":"bar"}';
 		$scope.authenticate = function(value) {
-			if(!value) {
-				value = $scope.inviteNumber
-			}
-
+			console.log(value)
 			User.logIn(value).then(function(success) {
-				if(success) {
-					$state.go('mainApp.imageFeed');
-				}
+				$state.go('mainApp.imageFeed');
+			}, function(err) {
+				console.warn(err)
 			});
-				
 		};
 
 		$scope.scanBarcode = function() {

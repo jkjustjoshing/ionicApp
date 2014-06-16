@@ -1,54 +1,56 @@
 angular.module('ionicApp')  
-  .factory('User', function($q, firebaseKey, $rootScope) {
+  .factory('User', function($q, Firebase, $rootScope, $localStorage) {
 
-    var token, info;
+    var accessCredentials, user, userData;
 
     return {
       loggedIn: function() {
-        return !!token;
+        return !!accessCredentials;
       },
       getInfo: function() {
-        return info;
+      	if(userData) {
+      		return $q.when(userData);
+      	} else {
+					var credentials = {
+						u: $localStorage.username,
+						p: $localStorage.password
+					};
+
+					return this.logIn(credentials).then(function() {
+      			return userData;
+      		});
+      	}
       },
-      logIn: function(passedToken) {
+      logIn: function(tokenJSON) {
+      	/*
+				 * Token JSON should be of the format 
+				 * {"u": "abc123", "p": "defghi"}
+				 * where the Firebase email is josh+abc123@joshkra.me and the password is defghi.
+         */
+        if(typeof tokenJSON === 'string') {
+        	tokenJSON = JSON.parse(tokenJSON);
+        }
 
-        var deferred = $q.defer();
+        $localStorage.username = tokenJSON.u;
+        $localStorage.password = tokenJSON.p;
 
-        var ref = new Firebase(firebaseKey + 'people/' + passedToken);
 
-        ref.on('value', function(value) {
-            if(value.val() && value.val().name) {
-              info = value.val();
-              token = passedToken;
-              deferred.resolve(true);
-            } else {
-              deferred.resolve(false);
-            }
+        return Firebase.authenticate(tokenJSON.u, tokenJSON.p).then(function(thisUser) {
+        	user = thisUser;
+        	// Get user data
+        	return Firebase.request('users/' + user.uid);
         }, function(error) {
-            deferred.resolve(false);
+        	// No login
+        	delete $localStorage.username;
+        	delete $localStorage.password;
+        	return $q.reject(error);
+        }).then(function(thisUserData) {
+        	userData = thisUserData;
         });
-
-        return deferred.promise;
         
       },
       getCountdown: function() {
-
-        var deferred = $q.defer();
-
-    		var ref = new Firebase(firebaseKey + 'config/countdownDate');
-
-        ref.on('value', function(value) {
-            if(value.val()) {
-              deferred.resolve(value.val());
-            } else {
-              deferred.reject();
-            }
-        }, function(error) {
-            deferred.reject();
-        });
-
-        return deferred.promise;
-        
+    		return Firebase.request('config/countdownDate');
       }
     }
   });
