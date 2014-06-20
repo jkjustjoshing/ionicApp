@@ -1,16 +1,1 @@
-<ion-content >
-	<ion-list on-infinite-scroll="loadMore">
-		<ion-item>
-			<button class="button button-block button-balanced" ng-click="uploadImage()">
-				Upload image
-			</button>
-		</ion-item>
-		<ion-item>
-			<img ng-src="{{uploadedImage}}" />
-		</ion-item>
-		<ion-item ng-repeat="url in urls | limitTo:numberToDisplay" item="image">
-			<img ng-src="{{url}}" alt="Uploaded image" style="width: 100%"/>
-		</ion-item>
-	</ion-list>
-	<ion-infinite-scroll ng-if="!endOfList()" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll>
-</ion-content>
+<ion-content><ion-list on-infinite-scroll="loadMore"><ion-item><button class="button button-block button-balanced" ng-click="uploadImage()">Upload image</button></ion-item><ion-item><img ng-src="{{uploadedImage}}"></ion-item><ion-item ng-repeat="url in urls | limitTo:numberToDisplay" item="image"><img ng-src="{{url}}" alt="Uploaded image" style="width: 100%"></ion-item></ion-list><ion-infinite-scroll ng-if="!endOfList()" on-infinite="loadMore()" distance="10%"></ion-infinite-scroll></ion-content>

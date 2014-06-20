@@ -1,4 +1,8 @@
-node_modules/
-.DS_store
-www/lib
-platforms/
+node_modules
+www
+.tmp
+.sass-cache
+.DS_Store
+app/bower_components
+coverage
+platforms
