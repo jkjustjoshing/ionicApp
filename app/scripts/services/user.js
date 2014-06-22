@@ -38,7 +38,10 @@ angular.module('ionicApp')
         return Firebase.authenticate(tokenJSON.u, tokenJSON.p).then(function(thisUser) {
         	user = thisUser;
         	// Get user data
-        	return Firebase.request('users/' + user.uid);
+        	return Firebase.request('users/' + user.uid).then(function(result) {
+        		result.uid = user.uid;
+        		return result;
+        	});
         }, function(error) {
         	// No login
         	delete $localStorage.username;

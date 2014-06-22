@@ -1,8 +1,16 @@
 <ion-content>
 	<ion-list>
-		<ion-item ng-repeat="item in guestBook">
+		<ion-item ng-show="!compose && !wroteEntry">
+			<button class="button button-block button-balanced" ng-click="writeEntry()">
+				Write in the Guest Book
+			</button>
+		</ion-item>
+		<ion-item ng-repeat="item in guestBook" ng-class="{editable: item.editable}">
 			<h2 class="item-text-wrap">{{item.name}}</h2>
 			<div class="item-text-wrap">{{item.text}}</div>
+			<ion-option-button ng-show="item.editable" class="button-energized" ng-click="edit(item, $index)">
+      	Edit
+    	</ion-option-button>
 		</ion-item>
 	</ion-list>
 </ion-content>
