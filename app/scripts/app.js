@@ -43,11 +43,6 @@ angular.module('ionicApp', ['ionic', 'firebase', 'ui.router', 'ngStorage'])
       templateUrl: "templates/mainApp.html",
       controller: 'MainAppCtrl'
     })
-      .state('mainApp.imageFeed', {
-        url: '/imageFeed',
-        templateUrl: 'templates/imageFeed.html',
-        controller: 'ImageFeedCtrl'
-      })
       .state('mainApp.rsvp', {
         url: '/rsvp',
         templateUrl: 'templates/rsvp.html',

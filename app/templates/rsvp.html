@@ -1,5 +1,17 @@
 <ion-content>
-	<ion-list>
+  <form ng-submit="submit()">
+    <p>You're invited, dude! Come on out!</p>
 
-	</ion-list>
+    <input type="radio" ng-model="info.attending" ng-value="true"> Attending
+    <input type="radio" ng-model="info.attending" ng-value="false"> Not Attending
+
+
+    <div ng-if="info.guest.allow">
+      <p>You wanna bring a friend? Go ahead!</p>
+      <input type="text" ng-model="info.guest.name" placeholder="name" />
+      <input type="checkbox" ng-model="info.guest.noGuest" />
+    </div>
+
+    <input type="submit" />
+  </form>
 </ion-content>
